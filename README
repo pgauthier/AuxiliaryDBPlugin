@@ -1,0 +1,24 @@
+This is the simpliest play! plugin possible.
+This allow to connect to an additional auxialiary datasource via jdbc.
+
+Just declare this module in the application.conf, like that
+
+	module.AuxiliaryDBPlugin=${play.path}/modules/AuxiliaryDBPlugin
+
+Then using the same syntaxe as the main db connection, declare the jdbc paramaters like:
+
+	auxiliaryDB.url=jdbc:oracle:thin:@db.host.com:1564:SID
+	auxiliaryDB.driver=oracle.jdbc.driver.OracleDriver
+	auxiliaryDB.user=P
+	auxiliaryDB.pass=P
+
+Finally, you'll be able to use is in java, like this :
+
+	ResultSet res = AuxiliaryDB.executeQuery(sqlStringRequest);
+	while(res.next()){
+		//TO-DO handle results
+	}
+	
+Tech notes :
+This is a simple refactoring of the play.db.DBPlugin and play.db.DB but without any JPA stufs
+http://bazaar.launchpad.net/~play-developers/play/1.0/annotate/head%3A/framework/src/play/db/DBPlugin.java
